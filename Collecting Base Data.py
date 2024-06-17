@@ -28,18 +28,32 @@ soup = BeautifulSoup(html,'html.parser')
 data = []
 
 rows = soup.select('#table_8 tbody tr')
+
 for i in rows:
     d = {}
     info= i.select('td')
-    info.pop(0)
-    info.pop(0)
-    d["Provider Name"] = info.pop(0).text
-    d["Flat Rate"] = info.pop(0).text + "/kWh"
-    d["Daily Charge"] = info.pop(0).text
-    info.pop(0)
-    d["Reference Price"] =info.pop(0).text
-    d["Specific Plan Links"] = "https://wattever.com.au" + info.pop(0).select_one('a')['href']
+    d["Provider Name"] = info[2].text
+    d['Plans'] = []
+    Specific_Plan_Link = "https://wattever.com.au" + info[7].select_one('a')['href']
+    plan_link = requests.get(Specific_Plan_Link)
+    soup1 = BeautifulSoup(plan_link.content,'html.parser')
+    plan_rows= soup1.select('.ue-content-text')
+    for i in plan_rows:
+        if 'Powercor' in i.select_one('h3').text:
+            plan_rows= i.select('tbody tr')
+            break
+    for j in plan_rows:
+        d1 = {}
+        plan_info = j.select('td')
+        if plan_info[4].text == 'D1':
+            d1['Plan Name'] = plan_info[0].text
+            d1['General Usage Charge'] = plan_info[6].text[:-1]
+            d1['Supply Charge'] = plan_info[12].text[:-1]
+            d1['Solar Feed-in'] = plan_info[14].text[:-1]
+            d1['Upfront Credit']= plan_info[15].text[1:]
+            d1['Reference Price'] = plan_info[17].text
+            d1['Plan Link'] = j.select_one('a')['href']
+            d['Plans'].append(d1)
     data.append(d)
-
-print(data[2])
+print(data)
 
