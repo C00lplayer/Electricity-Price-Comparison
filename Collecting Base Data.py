@@ -1,6 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 import brotli
+import json
+from time import sleep
 
 def save_html(html, path):
     """Accepts the html content as `html` and the name of the file 
@@ -33,15 +35,20 @@ for i in rows:
     d = {}
     info= i.select('td')
     d["Provider Name"] = info[2].text
+    print(d["Provider Name"])
     d['Plans'] = []
     Specific_Plan_Link = "https://wattever.com.au" + info[7].select_one('a')['href']
     plan_link = requests.get(Specific_Plan_Link)
     soup1 = BeautifulSoup(plan_link.content,'html.parser')
     plan_rows= soup1.select('.ue-content-text')
+    print("inside")
     for i in plan_rows:
-        if 'Powercor' in i.select_one('h3').text:
-            plan_rows= i.select('tbody tr')
-            break
+        h3_tag = i.select_one('h3')
+        if h3_tag is not None: 
+            if 'Powercor' in h3_tag.text:
+                plan_rows= i.select('tbody tr')
+                break
+    
     for j in plan_rows:
         d1 = {}
         plan_info = j.select('td')
@@ -52,8 +59,15 @@ for i in rows:
             d1['Solar Feed-in'] = plan_info[14].text[:-1]
             d1['Upfront Credit']= plan_info[15].text[1:]
             d1['Reference Price'] = plan_info[17].text
-            d1['Plan Link'] = j.select_one('a')['href']
+            try:
+                d1['Plan Link'] = j.select_one('a')['href']
+            except:
+                pass
             d['Plans'].append(d1)
-    data.append(d)
-print(data)
+    if d['Plans']:
+        data.append(d)
+
+
+with open('Elec-prices.json','w') as f:
+    json.dump(data,f)
 
