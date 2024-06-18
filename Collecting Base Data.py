@@ -68,6 +68,6 @@ for i in rows:
         data.append(d)
 
 
-with open('Elec-prices.json','w') as f:
+with open('Electricity-plans.json','w') as f:
     json.dump(data,f)
 
