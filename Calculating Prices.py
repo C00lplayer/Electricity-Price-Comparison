@@ -85,8 +85,8 @@ for plan in All_Plans:
 
 # This code below calculates the monthly cost for each plan, sorts the plans by the cheapest plan and the using the upfront credit as a tiebreaker and then finally saves it as a CSV file:
 All_Plans = []
-MONTHLY_USAGE = 282.162
-DAYS_IN_A_MONTH= 30
+MONTHLY_USAGE = 444.133
+DAYS_IN_A_MONTH= 31
 
 csv_file = open("sorted-monthly-plans.csv","w")
 writer = csv.writer(csv_file)
