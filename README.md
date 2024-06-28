@@ -104,10 +104,11 @@ To set the webscraper to your electricity network change the following:
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-After the program is run you should end up with a graph with your current plan vs. the other top 10 cheapest plans as seen below:
+After running the program which graphs the plans you should end up with a graph with your current plan vs. the other top 10 cheapest plans as seen below:
 
 ![Screenshot comparision graph.](https://github.com/C00lplayer/Electricity-Price-Comparison/blob/main/Graph%20of%20Plans%20Over%20Time.png?raw=true)
 
+Or if you run the program which analysis only 1 specific month you should end up with a csv file which contains all the plans sorted by the cheapest plan first like this: [CSV File]
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -138,7 +139,7 @@ After the program is run you should end up with a graph with your current plan v
 [json]: https://www.json.org
 [request]: https://pypi.org/project/requests/
 [beautifulsoup4]: https://pypi.org/project/beautifulsoup4/
-
+[CSV File]: https://github.com/C00lplayer/Electricity-Price-Comparison/blob/main/sorted-plans-for-specific-month.csv
 
 [contributors-shield]: https://img.shields.io/github/contributors/github_username/repo_name.svg?style=for-the-badge
 [contributors-url]: https://github.com/github_username/repo_name/graphs/contributors
