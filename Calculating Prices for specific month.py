@@ -88,7 +88,7 @@ All_Plans = []
 SPECIFIC_MONTH_USAGE = "Enter Usage for that month"
 DAYS_IN_THAT_PERIOD= "Enter days in that current period"
 
-csv_file = open("sorted-monthly-plans.csv","w")
+csv_file = open("sorted-plans-for-specific-month.csv","w")
 writer = csv.writer(csv_file)
 
 
