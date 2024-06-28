@@ -85,8 +85,8 @@ for plan in All_Plans:
 
 # This code below calculates the monthly cost for each plan, sorts the plans by the cheapest plan and the using the upfront credit as a tiebreaker and then finally saves it as a CSV file:
 All_Plans = []
-MONTHLY_USAGE = 444.133
-DAYS_IN_A_MONTH= 31
+SPECIFIC_MONTH_USAGE = "Enter Usage for that month"
+DAYS_IN_THAT_PERIOD= "Enter days in that current period"
 
 csv_file = open("sorted-monthly-plans.csv","w")
 writer = csv.writer(csv_file)
@@ -100,8 +100,8 @@ for each_provider in data:
         Plan_info["Provider"] = Name
         Plan_info["Plan Name"] = plan["Plan Name"]
         
-        General_Usage = (MONTHLY_USAGE* float(plan['General Usage Charge']))/100
-        Supply_Charge = (DAYS_IN_A_MONTH*float(plan['Supply Charge']))/100
+        General_Usage = (SPECIFIC_MONTH_USAGE* float(plan['General Usage Charge']))/100
+        Supply_Charge = (DAYS_IN_THAT_PERIOD*float(plan['Supply Charge']))/100
         Plan_info["Estimated Monthly Price"] = "$" + str(round(General_Usage + Supply_Charge,2))
         
         Plan_info["Upfront Credit"] =  "$" + plan["Upfront Credit"]
