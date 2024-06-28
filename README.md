@@ -98,6 +98,9 @@ To set the webscraper to your electricity network change the following:
       Current_Supply =  "EnterCurrent supply charge here"
       Current_usage = {"Aug 2023": "Enter usage in KWH" , "Sep 2023": "Enter usage in KWH" ,"Oct 2023": "Enter usage in KWH" , "Nov 2023": "Enter usage in KWH", "Dec 2023": "Enter usage in KWH" ,"Jan 2024":"Enter usage in KWH", "Feb 2024": "Enter usage in KWH", "Mar 2024": "Enter usage in KWH", "Apr 2024": "Enter usage in KWH", "May 2024": "Enter usage in KWH"}
       ```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 <!-- USAGE EXAMPLES -->
 ## Usage
 
